@@ -4,6 +4,7 @@ package com.livehereandnow.ages;
 import com.livehereandnow.ages.card.AgesCard;
 import com.livehereandnow.ages.engine.AgesEngine;
 import com.livehereandnow.ages.exception.AgesException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,6 +20,7 @@ import javax.inject.Named;
 public class Main implements Serializable {
 
     private AgesEngine engine;
+    
 
     public AgesEngine getEngine() {
         return engine;
@@ -79,6 +81,7 @@ private String strDebug;
 
     public static void main(String[] args) throws IOException, AgesException {
         new Main().runProgram();
+    
         
     }
 
@@ -89,6 +92,8 @@ private String strDebug;
         while (true) {
             System.out.print("" + engine.getCurrentPlayer()+ " >> ");
             parser(in.readLine());
+            engine.doCmd("9999");
+        
         }
     }
 
@@ -151,7 +156,8 @@ private String strDebug;
                 System.out.println("Parameter must be integer!");
                 return false;
             }
-            return engine.doCmd(keyword, p1);
+            engine.doCmd(keyword, p1);
+            return true;
         }
         
           if (tokenCnt == 3) {//如果輸入的是2個字的話

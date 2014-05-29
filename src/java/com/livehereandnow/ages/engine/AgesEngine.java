@@ -142,6 +142,11 @@ public class AgesEngine {
         if (tokenCnt == 1) {//如果輸入的是一個字的話
             String feedback = doCmd(keyword);
             setDebgug(feedback);
+
+            System.out.println("123456789");
+            field.getP1().檢測();
+            field.getP2().檢測();
+
             return true;
         }
         if (tokenCnt == 2) {//如果輸入的是2個字的話
@@ -175,6 +180,7 @@ public class AgesEngine {
                 System.out.println("Parameter must be integer!");
                 return false;
             }
+
             return doCmd(keyword, p1, p2, p3);
         }
 
@@ -183,47 +189,13 @@ public class AgesEngine {
 //        setFeedback("   unknown command," + cmd + ", just ignore it!");
 //        setFeedback();
         setDebgug("[parser]: unknown command," + cmd + ", just ignore it!");
-
+        System.out.println("123456789");
+        field.getP1().檢測();
+        field.getP2().檢測();
         return false;
 
     }
 
-//    public EngineCore getCore() {
-//        return core;
-//    }
-//    public Player getCurrentPlayer() {
-//        return core.get當前玩家();
-//    }
-//    public String doProtocol(String cmd) throws IOException, AgesException {
-////        core.getRoundNum();
-//        switch (cmd) {
-//            case "history":
-//                return core.getHistory();
-//            default:
-//                return core.getCardRowInfo();
-//        }
-//
-////        return core.NOCARD.toString();
-//    }
-//    public String doUserCmd(String user, String cmd) throws IOException, AgesException {
-//
-//        if (user.equalsIgnoreCase("admin")) {
-//            parser(cmd);
-//            return core.getFeedback();
-//        }
-//
-//        if (core.get當前玩家().getName().equalsIgnoreCase(user)) {
-//            if (parser(cmd)) {
-//                return core.getFeedback();
-//
-//            } else {
-//                return "unknown command, " + cmd;
-//            }
-//
-//        } else {
-//            return "   " + user + ", not your turn!";
-//        }
-//    }
     public boolean doCmd(int id) throws IOException, AgesException {
 //        return field.
         field.showCardInfo(id);
@@ -233,18 +205,18 @@ public class AgesEngine {
 
     public String doCmd(String keyword) throws IOException, AgesException {
         switch (keyword) {
+            case "9999":
+                  field.getP1().檢測();
+                field.getP2().檢測();
+                return "9999";   
             case "server":
+
                 return doServer();
             case "new-game":
                 return doNewGame();
             case "p"://工人區_黃點 
                 return doPopulation();
 
-//            case "brief":
-//                return core.doBrief();
-//            case "d"://v0.59
-//            case "debug"://v0.59
-//                return core.doDebug();
             case "act":
                 return actActV1();
             case "list":
@@ -302,6 +274,7 @@ public class AgesEngine {
                 System.out.println("Unknown keyword, " + keyword);
                 return "Unknown keyword, " + keyword;
         }
+
     }
 
     public boolean doCmd(String keyword, int val) throws IOException, AgesException {
@@ -314,7 +287,9 @@ public class AgesEngine {
 
             case "b":
             case "build":
-                return actBuild(val);
+                actBuild(val);
+              
+                return true;
 
             case "act":
                 return actAct(val);
@@ -729,7 +704,7 @@ public class AgesEngine {
                         System.out.println("時代:" + card.getAge() + " " + card.getTag() + " " + key + " " + getSameSizeName(card.getName()) + " " + card.getAction().trim() + " " + card.getIconPoints() + " " + card.getEffect());
                     }
                     break;
-                       case 10:
+                case 10:
                     if (card.getTag().equals("實驗室")) {
                         System.out.println("時代:" + card.getAge() + " " + card.getTag() + " " + key + " " + getSameSizeName(card.getName()) + " " + card.getAction().trim() + " " + card.getEffect());
                     }
@@ -885,6 +860,9 @@ public class AgesEngine {
         System.out.println("只執行Tag=事件");
 //        System.out.println(field.get現在發生事件().get(0).getAction());
         switch (val) {
+            case 9999:
+                field.getP1().檢測();
+                break;
             case 1005:
                 field.getP1().act擴充人口();
                 field.getP2().act擴充人口();
@@ -902,8 +880,8 @@ public class AgesEngine {
             case 1019:
                 field.getP1().獲得資源(9);
                 field.getP2().獲得資源(5);
-             break;
-                /*
+                break;
+            /*
              
              case :
              break;

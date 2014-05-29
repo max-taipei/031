@@ -107,7 +107,18 @@ public class Player {
     public Points get內政手牌上限() {
         return 內政手牌上限;
     }
-
+public void 檢測(){
+    System.out.println("==========檢測開始==========");
+    int val=0;
+    for(int x=0;x<this.實驗室.size();x++){
+        System.out.println("現在科技+是"+val+"要處理時代"+實驗室.get(x).getAge().intValue());
+        System.out.println("要增加"+實驗室.get(x).getEffectIdea()+"乘"+實驗室.get(x).getTokenYellow()+"共"+實驗室.get(x).getEffectIdea()*實驗室.get(x).getTokenYellow());
+        val=val+(實驗室.get(x).getEffectIdea()*實驗室.get(x).getTokenYellow());
+        System.out.println("目前的科技+是"+val);
+    System.out.println("==========檢測結束==========");    
+    }
+    this.科技生產_當回合.setVal(val);
+}
     public void init建造中的奇蹟區() {
         wonderStages = new ArrayList<>();
         AgesCard card = 建造中的奇蹟區.get(0);
